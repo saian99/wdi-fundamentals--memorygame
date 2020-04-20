@@ -29,14 +29,29 @@ function checkForMatch() {
 		alert("sorry, try again");
 	}
 }
-function flipCard(cardId) {
-console.log("user flipped" + cards[cardId].rank)
-cardsInPlay.push(cards[cardId].rank);
-if (cardsInPlay.length === 2) {checkForMatch()}
-console.log(cards[cardId].cardImage);
-console.log(cards[cardId].suit);
-}
-flipCard(0);
-flipCard(2);
+function flipCard() {
+	if (this.getAttribute('src') == 'card-deck-css/images/backs/red.svg') {
+		let cardId = this.getAttribute('data-id');
+		this.setAttribute('src', cards[cardId].cardImage);
+		ranksInPlay.push(cards[cardId].rank);
+		suitesInPlay.push(cards[cardId].suit);
+		console.log(cards[cardId].rank + " of " + cards[cardId].suit + " was chosen----");
+		checkForMatch();
 
+	}
+}
+
+
+function createBoard() {
+	for (let i = 0; i < cards.length; i++){
+		const cardElement = document.
+		createElement("img")
+		cardElement.setAttribute('src', "images,back.png")
+		cardElement.setAttribute('data-id', [i])
+		cardElement.addEventlistener('click',
+			flipCard())
+		cardElement.appendChild('game-board')
+	};
+};
+createBoard();
 
